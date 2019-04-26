@@ -60,3 +60,17 @@ Examples:
   test(/** @type {!Array} */ (arrOrString).length);
   test(/** @type {!Array} */ (arrOrString).length + 1);
   ```
+  
+- JavaScript: Correctly handle comments in empty arrow function expressions ([#6086] by [@evilebottnawi])
+
+   <!-- prettier-ignore -->
+  ```js
+  // Input
+  const fn = (/*event, data*/) => doSomething(anything);
+    
+  // Output (Prettier stable)
+  const fn = () => /*event, data*/ doSomething(anything);
+    
+  // Output (Prettier master)
+  const fn = (/*event, data*/) => doSomething(anything);
+  ```
